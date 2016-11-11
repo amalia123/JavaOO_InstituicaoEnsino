@@ -26,6 +26,13 @@ public class Aluno {
         this.nome = nome;
     }
 
+    
+    public Aluno(){       
+        // ---
+        this.id = InstituicaoEnsino.getAlunos().size() + 1;
+    }
+    
+    
     public Aluno(int codigo, String nome){
         this.codigo = codigo;
         this.nome = nome;
