@@ -27,6 +27,8 @@ public class InstituicaoEnsino {
     }
     
     
+    
+    
 
     public static void main(String[] args) {
         int opcao = 0;
@@ -70,6 +72,12 @@ public class InstituicaoEnsino {
                 case 12:
                     ExibirMatriculas();
                     break;
+                case 13:
+                    ExibirCursosPorAluno();
+                    break;
+                case 14:
+                    ExibirAlunosPorCurso();
+                    break;
             }
 
         } while (opcao != 16);
@@ -95,7 +103,8 @@ public class InstituicaoEnsino {
 
         System.out.println(" 11 - Matricular aluno");
         System.out.println(" 12 - Exibir matriculas");
-
+        System.out.println(" 13 - Exibir Alunos Por Curso");
+        System.out.println(" 14 - Exibir Curso Por Aluno");
         System.out.println("16 - SAIR");
         System.out.print("Digite sua opcao:");
 
@@ -266,7 +275,37 @@ public class InstituicaoEnsino {
             Matricula.ImprimirDados(mat);
         }
     }
-
+    
+    private static void ExibirCursosPorAluno() {
+        System.out.println("Digite o código do aluno: ");
+        int codAluno = leitor.nextInt();
+        leitor.nextLine();
+    
+        System.out.println("Cursos em que o aluno está matriculado");
+        
+        for(Matricula mat : matriculas){
+            if(codAluno == mat.getAluno().getCodigo()){
+                Curso.ImprimirDados(mat.getCurso());
+            }
+            
+            
+        }
+        
+        
+    }
+   
+    private static void ExibirAlunosPorCurso() {
+        System.out.println("Digite o código do curso: ");
+        int codCurso = leitor.nextInt();
+        leitor.nextLine();
+        
+        for(Matricula mat : matriculas){
+            if (codCurso == mat.getCurso().getCodigo()){
+                Aluno.ImprimirDados(mat.getAluno());
+            }
+        }  
+        }
+    
     private static void GerarMassaTeste() {
         for (int i = 0; i < 10; i++) {
             Aluno a = new Aluno(i+100, "Aluno " + (i+100));
@@ -289,6 +328,12 @@ public class InstituicaoEnsino {
         m2.setAluno(InstituicaoEnsino.alunos.get(0));        
         m2.setCurso(InstituicaoEnsino.cursos.get(1));
         InstituicaoEnsino.matriculas.add(m2);
+        
+         // Aluno 101 --> Curso 501
+        Matricula m3 = new Matricula();
+        m3.setAluno(InstituicaoEnsino.alunos.get(1));        
+        m3.setCurso(InstituicaoEnsino.cursos.get(1));
+        InstituicaoEnsino.matriculas.add(m3);
 
     }
 
